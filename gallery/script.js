@@ -1,13 +1,6 @@
 // Add your code here
 $('.filter-button').on('click', function(e) {
   $(this).toggleClass('active');
-  // if ($(this).attr('id') === 'monkey') {
-  //   $('.monkey').toggle();
-  // } else if ($(this).attr('id') === 'dog'){
-  //   $('.dog').toggle();
-  // } else {
-  //   $('.cat').toggle();
-  // }
   if ($(this).hasClass('active')) {
     showTheseImages($(this).attr('id'));
   } else {
@@ -35,3 +28,14 @@ function hideTheseImages(imageClass) {
 function showTheseImages(imageClass) {
   $('.' + imageClass).fadeIn();
 }
+
+$.getJSON( "http://mks-frontend-gallery.herokuapp.com/", function( json ) {
+    $.each( json, function ( key, val ) {
+      $('<div class="large-4 small-6 columns">')
+        .addClass(val.animals[0])
+        .addClass(val.animals[1])
+        .prepend($('<img>').attr("src", val.url))
+        .appendTo('.gallery');
+    });
+});
+
