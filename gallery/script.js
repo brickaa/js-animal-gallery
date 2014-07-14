@@ -3,10 +3,11 @@ $(document.body).on('click', '.filter-button' ,function(e){
   $(this).toggleClass('active');
   if ($(this).hasClass('active')) {
     showTheseImages($(this).attr('id'));
+    alertify.alert('Look at the ' + $(this).attr('id') + '!');
   } else {
     hideTheseImages($(this).attr('id'));
+    alertify.alert('Goodbye ' + $(this).attr('id') + '!');
   }
-  console.log($(this).attr('id'));
 });
 
 function hideTheseImages(imageClass) {
@@ -38,8 +39,7 @@ $.getJSON( "http://mks-frontend-gallery.herokuapp.com/", function( json ) {
       );
       $.unique(ids);
     });
-      console.log(ids);
-      createFilters(ids);
+    createFilters(ids);
 });
 
 
