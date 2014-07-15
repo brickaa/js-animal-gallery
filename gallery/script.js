@@ -11,9 +11,11 @@ $(document).ready(function() {
   $.getJSON( "http://mks-frontend-gallery.herokuapp.com/", function( json ) {
       var ids = [];
       $.each( json, function ( key, val ) {
-        ids.push(
-          val.animals[0]
-        );
+        for (x=0; x < val.animals.length; x++) {
+          ids.push(
+              val.animals[x]
+            );
+        }
         $.unique(ids);
       });
       createFilters(ids);
